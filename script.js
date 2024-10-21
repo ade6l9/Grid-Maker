@@ -19,8 +19,26 @@ function addR()
 }
 
 // Add a column
-function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+function addC() 
+{
+    const table = document.getElementById("grid");
+
+    // If no rows exist, create one row first and add a single column to it
+    if (numRows === 0) 
+    {
+        addR();  // This will add a row with the correct number of columns (initially 1)
+    } else 
+    {
+        // Loop through each row and add one column (cell) to each row
+        for (let i = 0; i < numRows; i++) 
+        {
+            const row = table.rows[i];
+            const newCell = row.insertCell();  // Add one new cell (column) to each row
+            newCell.style.backgroundColor = "white";  // Set default background color
+            newCell.onclick = () => colorCell(newCell);  // Add click event for coloring
+        }
+    }
+    numCols++;
 }
 
 // Remove a row
