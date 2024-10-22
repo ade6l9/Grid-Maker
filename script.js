@@ -152,3 +152,4 @@ function colorCell(cell)
        alert("Please select a color first!");
    }
 }
+
