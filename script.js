@@ -8,13 +8,17 @@ function addR()
 {
     const table = document.getElementById("grid");
     const newRow = table.insertRow();
-    const cols = numCols > 0 ? numCols : 1; 
+    // Ensure the new row has the same number of columns as existing rows
+    // If numCols is greater than 0, use numCols, otherwise default to 1 column
+    const cols = numCols > 0 ? numCols : 1;
+    // Add cells (columns) to the new row
     for (let i = 0; i < cols; i++) 
     {
         const newCell = newRow.insertCell();
-        newCell.style.backgroundColor = "white";
-        newCell.onclick = () => colorCell(newCell);
+        newCell.style.backgroundColor = "white";  // Set default background cell color
+        newCell.onclick = () => colorCell(newCell);  // Attach click event for coloring
     }
+    // Increment the row count after adding the new row
     numRows++;
 }
 
@@ -22,28 +26,44 @@ function addR()
 function addC() 
 {
     const table = document.getElementById("grid");
-
-    // If no rows exist, create one row first and add a single column to it
+    // If no rows exist, create one row first (with 1 column by default)
     if (numRows === 0) 
     {
-        addR();  // This will add a row with the correct number of columns (initially 1)
+        addR();  // Adds the first row and column
     } else 
     {
-        // Loop through each row and add one column (cell) to each row
+        // Add one column to each existing row
         for (let i = 0; i < numRows; i++) 
         {
             const row = table.rows[i];
-            const newCell = row.insertCell();  // Add one new cell (column) to each row
-            newCell.style.backgroundColor = "white";  // Set default background color
-            newCell.onclick = () => colorCell(newCell);  // Add click event for coloring
+            const newCell = row.insertCell(); 
+            newCell.style.backgroundColor = "white"; 
+            newCell.onclick = () => colorCell(newCell); 
         }
     }
     numCols++;
 }
 
 // Remove a row
-function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+function removeR() 
+{
+    const table = document.getElementById("grid");
+    // Check if there are any rows to remove
+    if (numRows > 0) 
+    {
+        // Remove the last row from the table
+        table.deleteRow(-1); // -1 ensures that the last row is always removed
+        numRows--;
+        // If no rows are left after removal, reset numCols to 0
+        if (numRows === 0) 
+        {
+            numCols = 0;
+        }
+    } else 
+    {
+        // If there are no rows to remove, notify the user 
+        alert("No rows to remove!");
+    }
 }
 
 // Remove a column
