@@ -92,15 +92,21 @@ function selectColor()
 function fillU()
 {
     const cells = document.getElementsByTagName("td");
+    let uncoloredFound = false;  // Flag to track if any uncolored cells are found
     // Loop through each cell and fill only if it's uncolored
     for (let cell of cells) 
     {
         if (cell.style.backgroundColor === "white" || cell.style.backgroundColor === "") 
         {
             cell.style.backgroundColor = colorSelected ? colorSelected.toLowerCase() : "white";
+            uncoloredFound = true;  // Mark that we found and filled an uncolored cell
         }
     }
-    if (!colorSelected) 
+    // If no uncolored cells were found, display a message
+    if (!uncoloredFound) 
+    {
+        alert("No more uncolored boxes to fill!");
+    } else if (!colorSelected) 
     {
         alert("No color selected. Please select a color!");
     }
