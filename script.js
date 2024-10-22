@@ -124,3 +124,15 @@ function clearAll()
         cell.style.backgroundColor = "white";
     }
 }
+
+// Helper function for colloring individual cells
+function colorCell(cell) 
+{
+    if (colorSelected) 
+    {
+        cell.style.backgroundColor = colorSelected.toLowerCase();
+    } else 
+    {
+        alert("Please select a color first!");
+    }
+}
