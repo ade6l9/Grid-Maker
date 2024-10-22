@@ -83,19 +83,35 @@ function removeC()
 }
 
 // Set global variable for selected color
-function selectColor(){
+function selectColor()
+{
     colorSelected = document.getElementById("selectedColorId").value;
     console.log(colorSelected);
 }
 
 // Fill all uncolored cells
-function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+function fillU()
+{
+    const cells = document.getElementsByTagName("td");
+    // Loop through each cell and fill only if it's uncolored 
+    for (let cell of cells) 
+    {
+        if (cell.style.backgroundColor === "white" || cell.style.backgroundColor === "") 
+        {
+            cell.style.backgroundColor = colorSelected.toLowerCase();
+        }
+    }
 }
 
 // Fill all cells
-function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+function fillAll()
+{
+    const cells = document.getElementsByTagName("td");
+    // Loop through each cell and fill with the selected color
+    for (let cell of cells) 
+    {
+        cell.style.backgroundColor = colorSelected.toLowerCase();
+    }
 }
 
 // Clear all cells
